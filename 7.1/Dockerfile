@@ -29,7 +29,9 @@ RUN apk add --no-cache \
     postgresql-libs \
     rsync \
     zlib-dev \
-    libzip-dev
+    libzip-dev \
+    chromium \
+    chromium-chromedriver
 
 # Install PECL and PEAR extensions
 RUN pecl install \
@@ -64,6 +66,7 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 
 # Install PHP_CodeSniffer
 RUN composer global require "squizlabs/php_codesniffer=*"
+RUN composer global require hirak/prestissimo
 
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
